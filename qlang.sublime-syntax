@@ -1,0 +1,112 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+# scope http://stackoverflow.com/questions/10834765/where-to-find-a-list-of-scopes-for-sublime2-or-textmate
+# author: DamonChen
+# date: 2016-05-20
+
+name: qlang
+file_extensions:
+  - ql
+  - qlang
+scope: source.qlang
+contexts:
+  main:
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character
+    - match: '"'
+      scope: punctuation.definition.string.begin.qlang
+      push: double_quoted_string
+
+    - match: '`'
+      scope: punctuation.definition.string.triple.qlang
+      push: triple_quoted_string
+
+    # Comments begin with a '//' and finish at the end of the line
+    - match: '//'
+      scope: punctuation.definition.comment.qlang
+      push: line_comment
+
+
+    # Keywords are if, else for and while.
+    # Note that blackslashes don't need to be escaped within single quoted
+    # strings in YAML. When using single quoted strings, only single quotes
+    # need to be escaped: this is done by using two single quotes next to each
+    # other.
+    - match: '\b(break|case|chan|const|contiue|default|defer|else|elif|fallthrough|for|go|goto|if|import|export|map|include|import|range|return|select|switch|type|new)\b'
+      scope: keyword.control.qlang
+
+    - match: '\b(this)\b'
+      scope: variable.language.qlang
+
+    # type
+    - match: '\b(bool|byte|float|int|int8|int16|int32|int64|uint|uint8|uint16|uint32|uint64|string|class|fn)\b'
+      scope: storage.type.qlang
+
+    #  builtin method
+    - match: '\b(append|copy|delete|get|len|cap|mkmap|mapFrom|mapOf|panic|panic|printf|println|set|mkslice|slice|sliceFrom|sliceOf|sub|type|min|max|main|_init)\b'
+      scope: builtin.method.qlang
+
+    # predeclared
+    - match: '\b(undefined|false|true|iota|nil)\b'
+      scope: constant.language.qlang
+
+    # support
+    - match: '\b(bufio|builtin|bytes|chan|compress|crypto|encoding|errors|io|math|meta|net|os|path|reflect|runtime|strconv|^strings$|sync|fmt)\b'
+      scope: 'support.class.qlang'
+
+    # Numbers
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.qlang
+
+    - match: \(
+      push: brackets
+    - match: \)
+      scope: invalid.illegal.stray-bracket-end
+
+    - match: \[
+      push: square_brackets
+    - match: \]
+      scope: invalid.illegal.stray-bracket-end
+
+    - match: \{
+      push: braces
+    - match: \}
+      scope: invalid.illegal.stray-bracket-end
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.qlang
+    - match: '\\.'
+      scope: constant.character.escape.qlang
+    - match: '"'
+      scope: punctuation.definition.string.end.qlang
+      pop: true
+    - meta_include_prototype: false
+
+  triple_quoted_string:
+    - meta_scope: string.quoted.triple.qlang
+    - match: '`'
+      scope: punctuation.definition.triple.end.qlang
+      pop: true
+
+  line_comment:
+    - meta_scope: comment.line.qlang
+    - match: $
+      pop: true
+    - meta_include_prototype: false
+
+
+  brackets:
+    - match: \)
+      pop: true
+    - include: main
+
+  square_brackets:
+    - match: \]
+      pop: true
+
+  braces:
+    - match: \}
+      pop: true
+    - include: main
+

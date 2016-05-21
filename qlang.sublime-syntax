@@ -44,7 +44,7 @@ contexts:
       scope: storage.type.qlang
 
     #  builtin method
-    - match: '\b(append|copy|delete|get|len|cap|mkmap|mapFrom|mapOf|panic|panic|printf|println|set|mkslice|slice|sliceFrom|sliceOf|sub|type|min|max|main|_init)\b'
+    - match: '\b(append|copy|delete|get|len|cap|mkmap|mapFrom|mapOf|panic|mkchan|printf|println|set|mkslice|slice|sliceFrom|sliceOf|sub|type|min|max|main|_init)\b'
       scope: builtin.method.qlang
 
     # predeclared

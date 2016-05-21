@@ -44,15 +44,15 @@ contexts:
       scope: storage.type.qlang
 
     #  builtin method
-    - match: '\b(append|copy|delete|get|len|cap|mkmap|mapFrom|mapOf|panic|panic|printf|println|set|mkslice|slice|sliceFrom|sliceOf|sub|type|min|max|main|_init)\b'
-      scope: builtin.method.qlang
+    - match: '\b(append|copy|delete|get|len|cap|mkmap|mapFrom|mapOf|panic|panic|printf|println|fprintln|set|mkslice|slice|sliceFrom|sliceOf|sub|type|min|max|main|_init)\b'
+      scope: support.function.qlang
 
     # predeclared
     - match: '\b(undefined|false|true|iota|nil)\b'
       scope: constant.language.qlang
 
     # support
-    - match: '\b(bufio|builtin|bytes|chan|compress|crypto|encoding|errors|io|math|meta|net|os|path|reflect|runtime|strconv|^strings$|sync|fmt)\b'
+    - match: '\b(bufio|builtin|bytes|chan|compress|crypto|encoding|errors|io|math|meta|net|os|path|reflect|runtime|strconv|^strings$|sync|fmt|http)\b'
       scope: 'support.class.qlang'
 
     # Numbers

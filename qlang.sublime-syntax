@@ -33,7 +33,7 @@ contexts:
     # strings in YAML. When using single quoted strings, only single quotes
     # need to be escaped: this is done by using two single quotes next to each
     # other.
-    - match: '\b(break|case|chan|const|contiue|default|defer|else|elif|fallthrough|for|go|goto|if|import|export|map|include|import|range|return|select|switch|type|new)\b'
+    - match: '\b(break|case|chan|const|continue|default|defer|else|elif|fallthrough|for|go|goto|if|import|export|map|include|import|range|return|select|switch|type|new)\b'
       scope: keyword.control.qlang
 
     - match: '\b(this)\b'
